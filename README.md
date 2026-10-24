@@ -1,7 +1,7 @@
 # Smart Bus Ticket Booking & Reservation System
 
 ## Purpose
-A text-based (console) Python application for a small bus service. Through a numbered menu the user can browse routes, search for routes, book seats, view and search bookings, cancel bookings, check seat availability, and generate a booking report with a route schedule.
+A text-based (console) Python application for a small bus service. Through a numbered menu the user can browse routes, search for routes, book seats, view bookings, cancel bookings, check seat availability, and generate a booking report with a route schedule.
 
 It is a learning project that shows how Python lists, dictionaries, sets, tuples, loops and functions can solve a realistic reservation problem.
 
@@ -38,7 +38,7 @@ The program starts with five routes stored in memory:
 | 1. View Available Routes | Lists all routes with number, route ID, journey, departure time, fare and seats. Asks whether to show only routes with seats left. Shows `Fully Booked` when no seats remain. |
 | 2. Search for a Route | Search by route ID, departure city, or destination city (case-insensitive). Shows all matches, or a no-match message. |
 | 3. Book a Ticket | Asks for passenger name, age, route ID and number of seats, validates everything, then confirms the booking with a booking ID and total fare. |
-| 4. View My Bookings | Lists all bookings, including cancelled ones. You may type a passenger name to search (case-insensitive, partial names work); press Enter to show all. |
+| 4. View My Bookings | Lists all bookings, including cancelled ones. |
 | 5. Cancel a Booking | Cancels a booking by ID. Only a Confirmed booking can be cancelled. The record is kept with status Cancelled and its seats are restored once. |
 | 6. View Seat Availability | Shows available/total seats for every route with a status: Available, Partially Booked, or Fully Booked. Optional filter for routes with seats left. |
 | 7. Generate Booking Report | Shows the booking report, then the route schedule grouped by departure city. |
@@ -62,17 +62,7 @@ Total fare = ticket price x number of seats. Booking IDs look like `B1001`, `B10
 - Seats currently reserved and Confirmed revenue (Confirmed bookings only; cancelled bookings are excluded)
 - Number of fully booked routes
 - Confirmed seats and revenue for each route
-- Most popular route (see optional enhancements)
-- Confirmed revenue by departure city (see optional enhancements)
 - Route schedule by departure city (cities with no departures show `No scheduled departures.`)
-
-## Optional enhancements included
-These are extra features that do not change the required behaviour.
-1. **Search by passenger name** (Option 4): case-insensitive; partial names work; Enter shows all bookings.
-2. **Most popular route** (Option 7): measured by the **number of seats in Confirmed bookings**. Cancelled bookings are not counted. If two routes tie, the first one in the route list is shown. With no confirmed bookings it shows `No confirmed bookings yet.`
-3. **Confirmed revenue by departure city** (Option 7): groups Confirmed revenue by departure city; cancelled bookings are excluded.
-
-Not implemented: 10% discount, child/adult fare categories, individual seat numbers.
 
 ## Sample workflow
 ```
@@ -107,7 +97,7 @@ Choose 7 -> Total bookings created: 1
 ## How the program is organised (main.py)
 | Part | Purpose |
 |---|---|
-| `SUPPORTED_CITIES` (tuple) | Cities used for the schedule and city revenue |
+| `SUPPORTED_CITIES` (tuple) | Cities used for the route schedule |
 | `routes` (list of dictionaries) | Route ID, cities, time, ticket price, total and available seats |
 | `bookings` (list of dictionaries) | Booking ID, passenger name and age, route ID, seats, total fare, status |
 | `booking_ids` (set) | Booking IDs already issued, so IDs are never duplicated |
@@ -117,7 +107,7 @@ Choose 7 -> Total bookings created: 1
 | `view_routes()` | Option 1 |
 | `search_route()` | Option 2 |
 | `book_ticket()` | Option 3 |
-| `view_bookings()` | Option 4 (with passenger-name search) |
+| `view_bookings()` | Option 4 |
 | `cancel_booking()` | Option 5 |
 | `get_route_status()`, `view_availability()` | Option 6 |
 | `generate_report()`, `show_schedule()` | Option 7 |

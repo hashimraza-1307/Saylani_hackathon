@@ -3,7 +3,7 @@ Run: python main.py. Each test started from a fresh program run, because data is
 Actual results below are the real output of the program. The menu text is replaced by [Main menu displayed] for readability.
 The last input of every test is 8 (Exit); the Goodbye line comes only from that final Exit, not from the feature being tested.
 ======================================================================
- 
+
 TC-01: View all routes
 Scenario / action : Choose View Available Routes (Option 1, filter n)
 Input sequence    : 1 | n | 8 (Exit - only to close the program after the test)
@@ -21,7 +21,7 @@ Actual result     :
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 TC-02: Search Hyderabad
 Scenario / action : Option 2, search city Hyderabad
 Input sequence    : 2 | Hyderabad | 8 (Exit - only to close the program after the test)
@@ -34,7 +34,7 @@ Actual result     :
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 TC-03: Unknown city
 Scenario / action : Option 2, search Atlantis, then Option 8 to show program continues
 Input sequence    : 2 | Atlantis | 8 (Exit - only to close the program after the test)
@@ -45,7 +45,7 @@ Actual result     :
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 TC-04: Book two seats
 Scenario / action : Option 3: Ahmed, 25, R101, 2 seats, then Option 6 to check availability
 Input sequence    : 3 | Ahmed | 25 | R101 | 2 | 6 | n | 8 (Exit - only to close the program after the test)
@@ -72,7 +72,7 @@ Actual result     :
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 TC-05: Zero seats
 Scenario / action : Attempt booking with 0 seats, then Options 4 and 6
 Input sequence    : 3 | Ahmed | 25 | R101 | 0 | 4 | 6 | n | 8 (Exit - only to close the program after the test)
@@ -93,7 +93,7 @@ Actual result     :
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 TC-06: Too many seats
 Scenario / action : Request 41 seats on R101 (40 available), then Options 4 and 6
 Input sequence    : 3 | Ahmed | 25 | R101 | 41 | 4 | 6 | n | 8 (Exit - only to close the program after the test)
@@ -114,11 +114,11 @@ Actual result     :
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 TC-07: Cancel confirmed booking
-Scenario / action : Book 2 seats (B1001), cancel B1001, then Option 4 and search passenger name 'ahmed' (case-insensitive)
-Input sequence    : 3 | Ahmed | 25 | R101 | 2 | 5 | B1001 | 4 | ahmed | 8 (Exit - only to close the program after the test)
-Expected result   : output contains -> Booking B1001 has been cancelled ; Seats restored: 2 ; Route R101 available seats: 40 ; B1001 | Ahmed ; Cancelled
+Scenario / action : Book 2 seats (B1001), cancel B1001, then Option 4
+Input sequence    : 3 | Ahmed | 25 | R101 | 2 | 5 | B1001 | 4 | 8 (Exit - only to close the program after the test)
+Expected result   : output contains -> Booking B1001 has been cancelled ; Seats restored: 2 ; Route R101 available seats: 40 ; Cancelled
 Actual result     :
     [Main menu displayed]
     Passenger name: Passenger age: Route ID (e.g. R101): Number of seats: 
@@ -135,13 +135,12 @@ Actual result     :
     Seats restored: 2
     Route R101 available seats: 40
     [Main menu displayed]
-    Search by passenger name (press Enter to show all): 
     BOOKING HISTORY
     1. B1001 | Ahmed | R101 (Karachi -> Hyderabad) | Seats: 2 | Rs. 2400 | Cancelled
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 TC-08: Cancel same booking again
 Scenario / action : Book, cancel B1001 twice, then Option 6
 Input sequence    : 3 | Ahmed | 25 | R101 | 2 | 5 | B1001 | 5 | B1001 | 6 | n | 8 (Exit - only to close the program after the test)
@@ -174,11 +173,11 @@ Actual result     :
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 TC-09: Report with no bookings
 Scenario / action : Generate report from empty list (Option 7)
 Input sequence    : 7 | 8 (Exit - only to close the program after the test)
-Expected result   : output contains -> Total bookings created: 0 ; Confirmed bookings: 0 ; Cancelled bookings: 0 ; Seats currently reserved: 0 ; Confirmed revenue: Rs. 0 ; Fully booked routes: 0 ; R101: 0 seat(s) reserved ; No confirmed bookings yet. ; Karachi: Rs. 0 ; Lahore: Rs. 0
+Expected result   : output contains -> Total bookings created: 0 ; Confirmed bookings: 0 ; Cancelled bookings: 0 ; Seats currently reserved: 0 ; Confirmed revenue: Rs. 0 ; Fully booked routes: 0 ; R101: 0 seat(s) reserved
 Actual result     :
     [Main menu displayed]
     BOOKING REPORT
@@ -194,14 +193,6 @@ Actual result     :
       R103: 0 seat(s) reserved, Rs. 0
       R104: 0 seat(s) reserved, Rs. 0
       R105: 0 seat(s) reserved, Rs. 0
-    Most popular route (by seats in confirmed bookings):
-      No confirmed bookings yet.
-    Confirmed revenue by departure city:
-      Karachi: Rs. 0
-      Hyderabad: Rs. 0
-      Sukkur: Rs. 0
-      Mirpur Khas: Rs. 0
-      Lahore: Rs. 0
     ROUTE SCHEDULE BY DEPARTURE CITY
     Karachi
       R101 -> Hyderabad   | 08:00 AM
@@ -218,7 +209,7 @@ Actual result     :
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 TC-10: Book all seats
 Scenario / action : Book 2 seats, then book exactly the remaining 38 on R101, then Options 6 and 1
 Input sequence    : 3 | Ahmed | 25 | R101 | 2 | 3 | Sara | 30 | R101 | 38 | 6 | n | 1 | n | 8 (Exit - only to close the program after the test)
@@ -264,11 +255,11 @@ Actual result     :
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 TC-11: Report after cancellation
 Scenario / action : Book R101 x2 (B1001), book R103 x3 (B1002), cancel B1001, Option 7
 Input sequence    : 3 | Ahmed | 25 | R101 | 2 | 3 | Sara | 30 | R103 | 3 | 5 | B1001 | 7 | 8 (Exit - only to close the program after the test)
-Expected result   : output contains -> Total bookings created: 2 ; Confirmed bookings: 1 ; Cancelled bookings: 1 ; Seats currently reserved: 3 ; Confirmed revenue: Rs. 2,400 ; R103 (Hyderabad -> Mirpur Khas) with 3 seat(s) ; Karachi: Rs. 0 ; Hyderabad: Rs. 2,400
+Expected result   : output contains -> Total bookings created: 2 ; Confirmed bookings: 1 ; Cancelled bookings: 1 ; Seats currently reserved: 3 ; Confirmed revenue: Rs. 2,400
 Actual result     :
     [Main menu displayed]
     Passenger name: Passenger age: Route ID (e.g. R101): Number of seats: 
@@ -308,14 +299,6 @@ Actual result     :
       R103: 3 seat(s) reserved, Rs. 2,400
       R104: 0 seat(s) reserved, Rs. 0
       R105: 0 seat(s) reserved, Rs. 0
-    Most popular route (by seats in confirmed bookings):
-      R103 (Hyderabad -> Mirpur Khas) with 3 seat(s)
-    Confirmed revenue by departure city:
-      Karachi: Rs. 0
-      Hyderabad: Rs. 2,400
-      Sukkur: Rs. 0
-      Mirpur Khas: Rs. 0
-      Lahore: Rs. 0
     ROUTE SCHEDULE BY DEPARTURE CITY
     Karachi
       R101 -> Hyderabad   | 08:00 AM
@@ -332,7 +315,7 @@ Actual result     :
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 TC-12: Invalid menu option
 Scenario / action : Enter 'abc' then 9 at the menu, then Option 8
 Input sequence    : abc | 9 | 8 (Exit - only to close the program after the test)
@@ -346,8 +329,7 @@ Actual result     :
     [Main menu displayed]
     Thank you for using Smart Bus Reservation System. Goodbye!
 Matched           : Yes
- 
+
 ======================================================================
 Summary: 12/12 tests matched expected results.
 Note: records are kept in memory only and are lost when the program closes.
- 
